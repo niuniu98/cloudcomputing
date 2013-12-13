@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<div>
+    <h1>Welcome</h1>
+
+    <!-- Standard HTML form, with the submit function bound to the register() function defined in the the controller -->
+    <form id="reg" ng-submit="register()">
+        <h2>Member Registration</h2>
+        <fieldset>
+            <legend>Register a member:</legend>
+            <!-- Each input is bound to a property on the prototype newMember object -->
+            <div>
+                <label for="product">product:</label>
+                <select  name = "product"  type= "text"  id="product" ng-model="newProduct.productId" ng-change = "price();" required>
+                    <option ng-repeat="product in products | orderBy:orderBy" value = {{product.rowKey}}>{{product.rowKey}}</option>
+                </select>
+                <em ng-show="message == ''"><a href="rest/products/price">price</a></em>
+                <em ng-hide="message == null">{{message}}</em>
+            </div>
+            <div>
+                <label for="name">username:</label>
+                <select  name = "name"  type= "text"  id="name" ng-model="newProduct.username" required>
+                    <option ng-repeat="member in members | orderBy:orderBy" value = {{member.rowKey}}>{{member.rowKey}}</option>
+                </select>
+                
+            </div>
+            
+            <!-- We output a list of success messages (appropriately styled!) for the form. -->
+            <ul ng-hide="!successMessages" class="success">
+                <li ng-repeat="message in successMessages">{{message}}</li>
+            </ul>
+
+            <!-- Output the list of error messages if any. -->
+            <ul ng-hide="!errorMessages" class="error">
+                <li ng-repeat="message in errorMessages">{{message}}</li>
+            </ul>
+
+            <!-- There are two buttons, the default submit action (which is bound for the whole form), and a reset button, that clears the form. -->
+            <div>
+                <input type="submit" id="register" value="Register" />
+                <input type="button" ng-click="reset()" name="cancel"
+                    id="cancel" value="Cancel" />
+            </div>
+        </fieldset>
+    </form>
+
+	
+    <div>
+        REST URL for all members: <a href="rest/bookings">/rest/bookings</a>
+    </div>
+</div>

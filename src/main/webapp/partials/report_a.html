@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div>
+    <h1>Welcome</h1>
+
+
+    <!-- Standard HTML form, with the submit function bound to the register() function defined in the the controller -->
+    <form id="reg" ng-submit="report()">
+        <h2>Report A</h2>
+        <fieldset>
+            <legend>Select a country:</legend>
+            
+            <div>
+            	<label for="country">country:</label>
+            	<select type="text" name="country" id="country" ng-model="country" required>
+  					<option value ="CHINA">CHINA</option>
+  					<option value ="UK">UK</option>
+  					<option value="USA">USA</option>
+ 	 				<option value="FRANCE">FRANCE</option>
+				</select>
+            </div>
+            <ul ng-hide="!successMessages" class="success">
+                <li ng-repeat="message in successMessages">{{message}}</li>
+            </ul>
+
+            <!-- Output the list of error messages if any. -->
+            <ul ng-hide="!errorMessages" class="error">
+                <li ng-repeat="message in errorMessages">{{message}}</li>
+            </ul>
+            <div>
+                <input type="submit" id="get" value="get" />
+            </div>
+        </fieldset>
+    </form>
+	
+    <em ng-show="value == null">ready,select a country</em>
+    <h2 ng-hide="value == null">{{value.value}}</h2>
+</div>

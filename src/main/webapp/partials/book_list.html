@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<div>
+    <h1>Welcome</h1>
+
+     <h2>Bookings</h2>
+    <!-- If there are no members registered, instead of showing the table, we show a simple message. -->
+    <em ng-show="books.length == null">No Booking</em>
+    <table ng-hide="books.length == null" class="simpletablestyle">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>UserName</th>
+                <th>Product</th>
+                <th>Time</th>
+                <th>Price</th>
+            </tr>
+        </thead>
+        <!-- The table is built using the AngularJS repeat function, iterating over the members variable, and ordering by the property specified in the orderBy variable -->
+        <tr ng-repeat="book in books | orderBy:orderBy">
+            <td>{{book.rowKey}}</td>
+            <td>{{book.partitionKey}}</td>
+            <td>{{member.productId}}</td>
+            <td>{{member.dateTime}}</td>
+            <td>{member.price}}</td>
+    </table>
+    <div>
+        REST URL for all members: <a href="rest/bookings">/rest/bookings</a>
+    </div>
+    <div>
+        <!-- The table has a button to manually refresh the values, in case, for example, someone else adds a member -->
+        <input type="button" ng-click="refresh()" name="refresh"
+            id="refresh" value="Refresh" />
+    </div>    
+</div>
